@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import com.san.di.FragmentScope
 import com.san.di.module.FragmentModule
 import com.san.ui.home.HomeFragment
-import com.san.ui.pic.PicFragment
+import com.san.ui.workout.PicFragment
 import dagger.Subcomponent
 
 @FragmentScope

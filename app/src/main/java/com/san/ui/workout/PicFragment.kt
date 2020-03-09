@@ -1,4 +1,4 @@
-package com.san.ui.pic
+package com.san.ui.workout
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -26,7 +26,7 @@ class PicFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         vm.liveDataPic.observe(this, Observer {
-            Picasso.get().load(it.url).centerCrop().fit().into(imageView)
+            //Picasso.get().load(it.url).centerCrop().fit().into(imageView)
         })
     }
 }

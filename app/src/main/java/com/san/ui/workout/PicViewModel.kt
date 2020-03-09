@@ -1,4 +1,4 @@
-package com.san.ui.pic
+package com.san.ui.workout
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

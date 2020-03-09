@@ -20,9 +20,7 @@
 
     <fragment
         android:id="@+id/pic"
-        android:name="com.san.ui.pic.PicFragment"
+        android:name="com.san.ui.workout.PicFragment"
         android:label="fragment_pic"
         tools:layout="@layout/fragment_pic" />
-
-
 </navigation>
