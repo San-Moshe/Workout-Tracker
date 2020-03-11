@@ -8,7 +8,8 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 //TODO reference to room
-//TODO get exercises from remote api
+//TODO read about the repository pattern, should it hold the data in memory? or should the view
+//TODO model do it, how does it work with room and remote api
 class ExerciseRepository @Inject
 constructor(
     private val exerciseApi: ExerciseApi

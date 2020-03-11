@@ -33,12 +33,12 @@ class ApisTest {
 
     @Test
     @Ignore("Please run this method manually.")
-    fun getMeiziPics() {
-        exerciseApi.getExerciseList(10, 0)
+    fun getExerciseList() {
+        exerciseApi.getExerciseList()
             .test()
             .assertNoErrors()
             .assertValue { response ->
-                !response.error && response.results.size == 10
+                !response.error && response.results.size == 20
             }
     }
 }
