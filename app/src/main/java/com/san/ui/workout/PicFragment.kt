@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.san.R
 import com.san.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_pic.*
@@ -25,7 +26,7 @@ class PicFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btn_add_exercise.setOnClickListener {
-            //TODO open new fragment where you choose exercise
+            findNavController().navigate(PicFragmentDirections.actionPicToExercisesFragment())
         }
 
         btn_stop_workout.setOnClickListener {

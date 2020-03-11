@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ExerciseList(
-    @SerializedName("_id") override val id: String,
+data class Exercise(
+    @SerializedName("id") override val id: String,
     @SerializedName("description") val description: String,
-    @SerializedName("url") val url: String,
-    @SerializedName("who") val who: String
+    @SerializedName("name") val name: String,
+    @SerializedName("category") val category: String
 ) : WithId, Parcelable

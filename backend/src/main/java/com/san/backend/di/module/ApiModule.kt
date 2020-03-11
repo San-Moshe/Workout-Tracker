@@ -19,7 +19,7 @@ class ApiModule(
 ) {
 
     enum class Env(val baseUrl: String) {
-        PRODUCT("https://wger.de/api/"),
+        PRODUCT("https://wger.de/api/v2/"),
     }
 
     @Provides
@@ -30,7 +30,7 @@ class ApiModule(
             val newReqBuilder = oldReq.newBuilder()
 
             // Add headers
-            newReqBuilder.addHeader("x-device-platform", "android")
+            newReqBuilder.addHeader("Accept", "application/json")
 
             chain.proceed(newReqBuilder.build())
         }
@@ -51,5 +51,5 @@ class ApiModule(
 
     @Provides
     @Singleton
-    fun providePicApi(retrofit: Retrofit): ExerciseApi = retrofit.create(ExerciseApi::class.java)
+    fun provideExerciseApi(retrofit: Retrofit): ExerciseApi = retrofit.create(ExerciseApi::class.java)
 }

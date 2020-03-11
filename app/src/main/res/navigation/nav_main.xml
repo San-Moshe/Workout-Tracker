@@ -22,5 +22,13 @@
         android:id="@+id/pic"
         android:name="com.san.ui.workout.PicFragment"
         android:label="fragment_pic"
-        tools:layout="@layout/fragment_pic" />
+        tools:layout="@layout/fragment_pic" >
+        <action
+            android:id="@+id/action_pic_to_exercisesFragment"
+            app:destination="@id/exercisesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exercisesFragment"
+        android:name="com.san.ui.exercise.ExercisesFragment"
+        android:label="ExercisesFragment" />
 </navigation>
