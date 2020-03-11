@@ -1,6 +1,6 @@
 package com.san.backend
 
-import com.san.backend.api.PicApi
+import com.san.backend.api.ExerciseApi
 import com.san.backend.di.module.ApiModule
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -29,12 +29,12 @@ class ApisTest {
     }
 
     @Inject
-    lateinit var picApi: PicApi
+    lateinit var exerciseApi: ExerciseApi
 
     @Test
     @Ignore("Please run this method manually.")
     fun getMeiziPics() {
-        picApi.getMeiziPics(10, 0)
+        exerciseApi.getExerciseList(10, 0)
             .test()
             .assertNoErrors()
             .assertValue { response ->

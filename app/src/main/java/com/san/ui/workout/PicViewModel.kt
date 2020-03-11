@@ -2,30 +2,30 @@ package com.san.ui.workout
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.san.backend.api.PicApi
-import com.san.backend.model.MeiziPic
+import com.san.backend.api.ExerciseApi
+import com.san.backend.model.ExerciseList
 import com.san.base.BaseViewModel
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class PicViewModel @Inject constructor(
-    private val picApi: PicApi
+    private val exerciseApi: ExerciseApi
 ) : BaseViewModel() {
-    val liveDataPic: LiveData<MeiziPic> = MutableLiveData()
+    val liveData: LiveData<ExerciseList> = MutableLiveData()
 
     init {
         fetchOnePic()
     }
 
     fun fetchOnePic() {
-        liveDataPic as MutableLiveData
-        picApi.getMeiziPics(1, (1..10).random())
+        liveData as MutableLiveData
+        exerciseApi.getExerciseList(1, (1..10).random())
             .subscribeOn(Schedulers.io()).doOnError {
 
             }
             .autoDisposable()
             .subscribe { response ->
-                liveDataPic.postValue(response.results[0])
+                liveData.postValue(response.results[0])
             }
     }
 }

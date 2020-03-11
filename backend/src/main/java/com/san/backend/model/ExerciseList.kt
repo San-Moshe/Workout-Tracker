@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class MeiziPic(
+data class ExerciseList(
     @SerializedName("_id") override val id: String,
-    @SerializedName("type") val type: String,
+    @SerializedName("description") val description: String,
     @SerializedName("url") val url: String,
     @SerializedName("who") val who: String
 ) : WithId, Parcelable

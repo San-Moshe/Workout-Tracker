@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.san.R
 import com.san.base.BaseFragment
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_pic.*
 
 class PicFragment : BaseFragment() {
@@ -25,7 +24,15 @@ class PicFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vm.liveDataPic.observe(this, Observer {
+        btn_add_exercise.setOnClickListener {
+            //TODO open new fragment where you choose exercise
+        }
+
+        btn_stop_workout.setOnClickListener {
+            //TODO navigate back to homeFragment
+        }
+
+        vm.liveData.observe(viewLifecycleOwner, Observer {
             //Picasso.get().load(it.url).centerCrop().fit().into(imageView)
         })
     }

@@ -1,6 +1,6 @@
 package com.san.backend.di.module
 
-import com.san.backend.api.PicApi
+import com.san.backend.api.ExerciseApi
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -19,7 +19,7 @@ class ApiModule(
 ) {
 
     enum class Env(val baseUrl: String) {
-        PRODUCT("http://gank.io/api/data/福利/"),
+        PRODUCT("https://wger.de/api/"),
     }
 
     @Provides
@@ -51,5 +51,5 @@ class ApiModule(
 
     @Provides
     @Singleton
-    fun providePicApi(retrofit: Retrofit): PicApi = retrofit.create(PicApi::class.java)
+    fun providePicApi(retrofit: Retrofit): ExerciseApi = retrofit.create(ExerciseApi::class.java)
 }
