@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="2">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_exercise_detail_image"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="0.3"
+        android:background="@color/colorAccent"
+        android:src="@drawable/hc_ic_share" />
+
+    <LinearLayout
+        android:id="@+id/ll_exercise_titles"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_exercise_detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            tools:text="Bench press" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_exercise_detail_equipment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            tools:text="Bench press" />
+    </LinearLayout>
+</LinearLayout>

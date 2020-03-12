@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="24sp"
+        android:textAlignment="center"
         tools:text="10" />
 
     <com.google.android.material.textfield.TextInputLayout
