@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import com.san.R
 import com.san.base.BaseFragment
 import kotlinx.android.synthetic.main.exercises_fragment.*
@@ -16,7 +18,12 @@ class ExercisesFragment : BaseFragment() {
         getViewModel(ExercisesViewModel::class.java)
     }
 
-    private var exercisesAdapter: ExerciseAdapter = ExerciseAdapter()
+    private lateinit var exercisesAdapter: ExerciseAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exercisesAdapter = ExerciseAdapter(context!!)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +35,11 @@ class ExercisesFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        rv_all_exercises.adapter = exercisesAdapter
+        rv_all_exercises.apply {
+            adapter = exercisesAdapter
+            addItemDecoration(DividerItemDecoration(context, VERTICAL))
+        }
+
 
         vm.liveDataExercises.observe(viewLifecycleOwner, Observer {
             it?.let { exerciseList ->

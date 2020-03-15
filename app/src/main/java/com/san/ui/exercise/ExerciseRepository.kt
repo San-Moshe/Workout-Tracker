@@ -1,9 +1,14 @@
 package com.san.ui.exercise
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.san.backend.api.ExerciseApi
 import com.san.backend.model.Exercise
+import com.san.backend.model.ImageURL
+import com.san.backend.model.wrapper.GankIoResponse
+import com.san.room.model.ExerciseInfo
+import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -14,17 +19,28 @@ class ExerciseRepository @Inject
 constructor(
     private val exerciseApi: ExerciseApi
 ) {
-    val liveDataExercises: LiveData<List<Exercise>> = MutableLiveData()
+    val liveDataExercises: LiveData<List<ExerciseInfo>> = MutableLiveData()
 
     //TODO fetch exercises images
+    @SuppressLint("CheckResult")
     fun fetchExercises() {
+        val requests = ArrayList<Observable<*>>().apply {
+            add(exerciseApi.getExerciseList())
+            add(exerciseApi.getExercisesImages())
+        }
         liveDataExercises as MutableLiveData
-        exerciseApi.getExerciseList()
-            .subscribeOn(Schedulers.io()).doOnError {
 
-            }
-            .subscribe { response ->
-                liveDataExercises.postValue(response.results)
-            }
+        Observable.zip(requests) { apiResults ->
+            (apiResults[1] as GankIoResponse<ImageURL>).results.associateBy { it.exercise }
+                .let { imageMap ->
+                    (apiResults[0] as GankIoResponse<Exercise>).results.map { exercise ->
+                        imageMap[exercise.id]?.let { imageUrl ->
+                            ExerciseInfo.fromExerciseAndImage(exercise, imageUrl)
+                        } ?: ExerciseInfo.fromExercise(exercise)
+                    }
+                }
+        }.subscribeOn(Schedulers.io()).subscribe {
+            liveDataExercises.postValue(it)
+        }
     }
 }

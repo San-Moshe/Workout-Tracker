@@ -10,5 +10,5 @@ data class Exercise(
     @SerializedName("description") val description: String,
     @SerializedName("name") val name: String,
     @SerializedName("category") val category: String,
-    @SerializedName("equipment") val equipment: String
+    @SerializedName("equipment") val equipment: List<String>
 ) : WithId, Parcelable

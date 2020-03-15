@@ -1,8 +1,8 @@
 package com.san.ui.exercise
 
 import androidx.lifecycle.LiveData
-import com.san.backend.model.Exercise
 import com.san.base.BaseViewModel
+import com.san.room.model.ExerciseInfo
 import javax.inject.Inject
 
 //TODO inject repository
@@ -12,7 +12,7 @@ class ExercisesViewModel @Inject constructor(private val exerciseRepository: Exe
         fetchExerciseList()
     }
 
-    private fun fetchExerciseList(): LiveData<List<Exercise>> {
+    private fun fetchExerciseList(): LiveData<List<ExerciseInfo>> {
         exerciseRepository.fetchExercises()
         return exerciseRepository.liveDataExercises
     }

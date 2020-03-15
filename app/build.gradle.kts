@@ -18,7 +18,7 @@ android {
     compileSdkVersion(28)
     defaultConfig {
         targetSdkVersion(28)
-        minSdkVersion(21)
+        minSdkVersion(24)
         applicationId = "com.san"
         versionCode = 1
         versionName = "1.0"
@@ -57,6 +57,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.1.0-beta01")
     implementation("androidx.constraintlayout:constraintlayout:2.0.0-beta2")
     implementation("androidx.lifecycle:lifecycle-extensions:2.0.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
 
     // Material
     implementation("com.google.android.material:material:1.1.0")
@@ -95,6 +96,14 @@ dependencies {
     debugImplementation("com.willowtreeapps.hyperion:hyperion-shared-preferences:0.9.27")
     debugImplementation("com.willowtreeapps.hyperion:hyperion-timber:0.9.27")
     releaseImplementation("com.willowtreeapps.hyperion:hyperion-core-no-op:0.9.27")
+
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.11.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
+
+    // Circular imageView
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).all {

@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:weightSum="2">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_exercise_detail_image"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="4dp"
         android:layout_marginEnd="16dp"
-        android:layout_weight="0.3"
-        android:background="@color/colorAccent"
-        android:src="@drawable/hc_ic_share" />
+        android:layout_weight="0.4"
+        android:src="@drawable/hc_ic_share"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="1dp" />
 
     <LinearLayout
         android:id="@+id/ll_exercise_titles"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.6"
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_exercise_detail_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:textSize="20sp"
             tools:text="Bench press" />
 
         <com.google.android.material.textview.MaterialTextView
