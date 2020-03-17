@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import com.san.R
 import com.san.base.BaseFragment
+import com.san.room.model.ExerciseInfo
+import com.san.ui.base.OnViewHolderClickListener
 import kotlinx.android.synthetic.main.exercises_fragment.*
 
-//TODO add click listener for adapter
-//TODO design the xml file
-class ExercisesFragment : BaseFragment() {
+class ExercisesFragment : BaseFragment(),
+    OnViewHolderClickListener<ExerciseInfo> {
     private val vm by lazy {
         getViewModel(ExercisesViewModel::class.java)
     }
@@ -22,7 +23,7 @@ class ExercisesFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        exercisesAdapter = ExerciseAdapter(context!!)
+        exercisesAdapter = ExerciseAdapter(context!!, this)
     }
 
     override fun onCreateView(
@@ -46,5 +47,9 @@ class ExercisesFragment : BaseFragment() {
                 exercisesAdapter.submitList(exerciseList)
             }
         })
+    }
+
+    override fun onItemSelected(item: ExerciseInfo) {
+
     }
 }

@@ -11,12 +11,19 @@ buildscript {
     }
 }
 
+
+plugins {
+    id("io.gitlab.arturbosch.detekt").version("1.4.0")
+}
+
 allprojects {
     repositories {
         google()
         maven { url = uri("https://jitpack.io") }
         jcenter()
     }
+
+    apply(plugin = "io.gitlab.arturbosch.detekt")
 }
 
 tasks.register("clean", Delete::class.java, Action<Delete> {
