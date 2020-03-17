@@ -12,23 +12,27 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_pic"
-            app:destination="@id/pic"
+            app:destination="@id/workout_graph"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:launchSingleTop="true"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
-    <fragment
-        android:id="@+id/pic"
-        android:name="com.san.ui.workout.PicFragment"
-        android:label="fragment_pic"
-        tools:layout="@layout/fragment_pic" >
-        <action
-            android:id="@+id/action_pic_to_exercisesFragment"
-            app:destination="@id/exercisesFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/exercisesFragment"
-        android:name="com.san.ui.exercise.ExercisesFragment"
-        android:label="ExercisesFragment" />
+    <navigation
+        android:id="@+id/workout_graph"
+        app:startDestination="@id/pic" >
+        <fragment
+            android:id="@+id/exercisesFragment"
+            android:name="com.san.ui.exercise.ExercisesFragment"
+            android:label="ExercisesFragment" />
+        <fragment
+            android:id="@+id/pic"
+            android:name="com.san.ui.workout.PicFragment"
+            android:label="fragment_pic"
+            tools:layout="@layout/fragment_pic">
+            <action
+                android:id="@+id/action_pic_to_exercisesFragment"
+                app:destination="@id/exercisesFragment" />
+        </fragment>
+    </navigation>
 </navigation>

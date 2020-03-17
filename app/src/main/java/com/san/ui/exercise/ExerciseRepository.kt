@@ -12,18 +12,23 @@ import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
+interface IExerciseRepository {
+    fun getExercises(): LiveData<List<ExerciseInfo>>
+    fun fetchExercises()
+}
+
 //TODO reference to room
 //TODO read about the repository pattern, should it hold the data in memory? or should the view
 //TODO model do it, how does it work with room and remote api
 class ExerciseRepository @Inject
 constructor(
     private val exerciseApi: ExerciseApi
-) {
-    val liveDataExercises: LiveData<List<ExerciseInfo>> = MutableLiveData()
+) : IExerciseRepository {
+    private val liveDataExercises: LiveData<List<ExerciseInfo>> = MutableLiveData()
 
-    //TODO fetch exercises images
+    override fun getExercises() = liveDataExercises
     @SuppressLint("CheckResult")
-    fun fetchExercises() {
+    override fun fetchExercises() {
         val requests = ArrayList<Observable<*>>().apply {
             add(exerciseApi.getExerciseList())
             add(exerciseApi.getExercisesImages())

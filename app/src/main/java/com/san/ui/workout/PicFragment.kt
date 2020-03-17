@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.san.R
 import com.san.base.BaseFragment
+import com.san.ui.exercise.WorkoutViewModel
 import kotlinx.android.synthetic.main.fragment_pic.*
 
 class PicFragment : BaseFragment() {
-    private val vm by lazy {
-        getViewModel(PicViewModel::class.java)
-    }
+    private val vm: WorkoutViewModel by navGraphViewModels(R.id.workout_graph)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,9 +32,5 @@ class PicFragment : BaseFragment() {
         btn_stop_workout.setOnClickListener {
             //TODO navigate back to homeFragment
         }
-
-        vm.liveData.observe(viewLifecycleOwner, Observer {
-            //Picasso.get().load(it.url).centerCrop().fit().into(imageView)
-        })
     }
 }

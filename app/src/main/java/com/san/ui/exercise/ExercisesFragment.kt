@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import com.san.R
@@ -15,15 +17,14 @@ import kotlinx.android.synthetic.main.exercises_fragment.*
 
 class ExercisesFragment : BaseFragment(),
     OnViewHolderClickListener<ExerciseInfo> {
-    private val vm by lazy {
-        getViewModel(ExercisesViewModel::class.java)
-    }
+
+    private val vm: WorkoutViewModel by navGraphViewModels(R.id.workout_graph)
 
     private lateinit var exercisesAdapter: ExerciseAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        exercisesAdapter = ExerciseAdapter(context!!, this)
+        exercisesAdapter = ExerciseAdapter(requireContext(), this)
     }
 
     override fun onCreateView(
@@ -42,7 +43,7 @@ class ExercisesFragment : BaseFragment(),
         }
 
 
-        vm.liveDataExercises.observe(viewLifecycleOwner, Observer {
+        vm.liveDataExercisesInfo.observe(viewLifecycleOwner, Observer {
             it?.let { exerciseList ->
                 exercisesAdapter.submitList(exerciseList)
             }
@@ -50,6 +51,7 @@ class ExercisesFragment : BaseFragment(),
     }
 
     override fun onItemSelected(item: ExerciseInfo) {
-
+        vm.selectExercise(item)
+        findNavController().popBackStack()
     }
 }

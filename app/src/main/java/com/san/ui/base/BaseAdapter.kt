@@ -14,5 +14,4 @@ abstract class BaseAdapter<T, VH : BaseViewHolder<T>>(
     ListAdapter<T, VH>(diffCallBack), ClickableAdapter<T> {
 
     override fun onItemReq(pos: Int): T = getItem(pos)
-
 }

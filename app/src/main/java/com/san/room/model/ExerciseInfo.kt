@@ -1,15 +1,19 @@
 package com.san.room.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.san.backend.model.Exercise
 import com.san.backend.model.ImageURL
 
+@Entity
 data class ExerciseInfo(
-    val id: String,
-    val description: String,
-    val name: String,
-    val category: String,
-    val equipment: List<String>,
-    var imageURL: String
+    @PrimaryKey val uid: String,
+    @ColumnInfo(name = "description") val description: String,
+    @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "category") val category: String,
+    @ColumnInfo(name = "equipment") val equipment: List<String>,
+    @ColumnInfo(name = "image_url") var imageURL: String
 ) {
     companion object {
         @JvmStatic

@@ -65,7 +65,7 @@ class ExerciseAdapter(
         @JvmStatic
         val diffCallback = object : DiffUtil.ItemCallback<ExerciseInfo>() {
             override fun areItemsTheSame(oldItem: ExerciseInfo, newItem: ExerciseInfo): Boolean =
-                oldItem.id == newItem.id
+                oldItem.uid == newItem.uid
 
 
             override fun areContentsTheSame(oldItem: ExerciseInfo, newItem: ExerciseInfo): Boolean =

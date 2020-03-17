@@ -14,6 +14,10 @@ abstract class BaseViewHolder<T>(
 ) :
     RecyclerView.ViewHolder(view), View.OnClickListener {
 
+    init {
+        view.setOnClickListener(this)
+    }
+
     override fun onClick(v: View?) {
         onViewHolderClickListener.onItemSelected(clickableAdapter.onItemReq(adapterPosition))
     }

@@ -53,18 +53,27 @@ dependencies {
 
     // Androidx
     implementation("androidx.appcompat:appcompat:1.1.0-rc01")
-    implementation("androidx.core:core-ktx:1.0.2")
+    implementation("androidx.core:core-ktx:1.2.0")
     implementation("androidx.recyclerview:recyclerview:1.1.0-beta01")
     implementation("androidx.constraintlayout:constraintlayout:2.0.0-beta2")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.0.0")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+
+    // Fragment
+    implementation("androidx.fragment:fragment-ktx:1.2.2")
 
     // Material
     implementation("com.google.android.material:material:1.1.0")
 
+    //Room
+    val room_version = "2.2.4"
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version") // For Kotlin use kapt instead of annotationProcessor
+
     // Navigation
-    implementation("android.arch.navigation:navigation-fragment-ktx:1.0.0")
-    implementation("android.arch.navigation:navigation-ui-ktx:1.0.0")
+    val nav_version = "2.2.1"
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     // ReactiveX
     implementation("com.uber.autodispose:autodispose:1.3.0")
