@@ -16,6 +16,4 @@ interface ExerciseApi {
 
     @GET("exerciseimage/?limit=1000&status=2")
     fun getExercisesImages(): Observable<GankIoResponse<ImageURL>>
-
-
 }

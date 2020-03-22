@@ -13,12 +13,18 @@ import com.san.R
 import com.san.base.BaseFragment
 import com.san.room.model.ExerciseInfo
 import com.san.ui.base.OnViewHolderClickListener
+import com.san.ui.workout.WorkoutViewModel
 import kotlinx.android.synthetic.main.exercises_fragment.*
 
 class ExercisesFragment : BaseFragment(),
     OnViewHolderClickListener<ExerciseInfo> {
 
-    private val vm: WorkoutViewModel by navGraphViewModels(R.id.workout_graph)
+    private val workoutVM: WorkoutViewModel by lazy {
+        getViewModel(WorkoutViewModel::class.java, requireActivity())
+    }
+    private val exerciseVM: ExerciseViewModel by lazy {
+        getViewModel(ExerciseViewModel::class.java)
+    }
 
     private lateinit var exercisesAdapter: ExerciseAdapter
 
@@ -42,8 +48,7 @@ class ExercisesFragment : BaseFragment(),
             addItemDecoration(DividerItemDecoration(context, VERTICAL))
         }
 
-
-        vm.liveDataExercisesInfo.observe(viewLifecycleOwner, Observer {
+        exerciseVM.liveDataExercisesInfo.observe(viewLifecycleOwner, Observer {
             it?.let { exerciseList ->
                 exercisesAdapter.submitList(exerciseList)
             }
@@ -51,7 +56,7 @@ class ExercisesFragment : BaseFragment(),
     }
 
     override fun onItemSelected(item: ExerciseInfo) {
-        vm.selectExercise(item)
+        workoutVM.selectExercise(item)
         findNavController().popBackStack()
     }
 }

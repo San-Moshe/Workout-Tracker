@@ -7,9 +7,15 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.san.R
 import com.san.base.BaseFragment
+import com.san.ui.workout.IWorkoutWriteOnlyViewModel
+import com.san.ui.workout.WorkoutViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment() {
+    private val vm: IWorkoutWriteOnlyViewModel by lazy {
+        getViewModel(WorkoutViewModel::class.java, requireActivity())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,7 +28,8 @@ class HomeFragment : BaseFragment() {
 
         btn_start_workout.text = getString(R.string.start_workout)
         btn_start_workout.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeToPic())
+            vm.startNewWorkout()
+            findNavController().navigate(HomeFragmentDirections.actionHomeToWorkoutGraph())
         }
     }
 }

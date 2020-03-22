@@ -21,8 +21,7 @@ class ExerciseAdapter(
     val onViewHolderClickListener: OnViewHolderClickListener<ExerciseInfo>
 ) :
     BaseAdapter<ExerciseInfo, BaseViewHolder<ExerciseInfo>>(
-        diffCallback,
-        onViewHolderClickListener
+        diffCallback
     ) {
     inner class ExerciseViewHolder(view: View, clickableAdapter: ClickableAdapter<ExerciseInfo>) :
         BaseViewHolder<ExerciseInfo>(view, onViewHolderClickListener, clickableAdapter) {

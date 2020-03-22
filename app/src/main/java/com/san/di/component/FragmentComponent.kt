@@ -5,7 +5,7 @@ import com.san.di.FragmentScope
 import com.san.di.module.FragmentModule
 import com.san.ui.exercise.ExercisesFragment
 import com.san.ui.home.HomeFragment
-import com.san.ui.workout.PicFragment
+import com.san.ui.workout.WorkoutFragment
 import dagger.Subcomponent
 
 @FragmentScope
@@ -23,7 +23,7 @@ interface FragmentComponent {
     }
 
     fun inject(fragment: HomeFragment)
-    fun inject(fragment: PicFragment)
+    fun inject(fragment: WorkoutFragment)
     fun inject(fragment: ExercisesFragment)
 }
 
@@ -32,7 +32,7 @@ fun FragmentComponent.Builder.buildAndInject(fragment: Fragment) {
 
     when (fragment) {
         is HomeFragment -> component.inject(fragment)
-        is PicFragment -> component.inject(fragment)
+        is WorkoutFragment -> component.inject(fragment)
         is ExercisesFragment -> component.inject(fragment)
     }
 }

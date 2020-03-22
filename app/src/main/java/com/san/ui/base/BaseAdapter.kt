@@ -8,8 +8,7 @@ interface ClickableAdapter<T> {
 }
 
 abstract class BaseAdapter<T, VH : BaseViewHolder<T>>(
-    diffCallBack: DiffUtil.ItemCallback<T>,
-    clickListener: OnViewHolderClickListener<T>
+    diffCallBack: DiffUtil.ItemCallback<T>
 ) :
     ListAdapter<T, VH>(diffCallBack), ClickableAdapter<T> {
 

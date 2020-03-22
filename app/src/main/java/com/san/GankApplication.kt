@@ -9,6 +9,7 @@ import com.san.di.module.AppModule
 import com.san.di.module.FlipperModule
 import com.facebook.flipper.core.FlipperClient
 import com.google.gson.GsonBuilder
+import com.jakewharton.threetenabp.AndroidThreeTen
 import okhttp3.OkHttpClient
 import timber.log.Timber
 import javax.inject.Inject
@@ -29,6 +30,8 @@ open class GankApplication : Application() {
             Timber.plant(Timber.DebugTree())
         }
         flipperClient.start()
+
+        AndroidThreeTen.init(this)
     }
 
     protected open fun createComponent(): AppComponent {

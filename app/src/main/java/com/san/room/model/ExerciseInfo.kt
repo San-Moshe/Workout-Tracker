@@ -3,12 +3,15 @@ package com.san.room.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.san.backend.model.Exercise
 import com.san.backend.model.ImageURL
+import com.san.room.converters.ListConverter
 
+@TypeConverters(ListConverter::class)
 @Entity
 data class ExerciseInfo(
-    @PrimaryKey val uid: String,
+    @PrimaryKey val uid: Int,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "category") val category: String,
@@ -18,7 +21,7 @@ data class ExerciseInfo(
     companion object {
         @JvmStatic
         fun fromExercise(exercise: Exercise) = ExerciseInfo(
-            exercise.id,
+            Integer.parseInt(exercise.id),
             exercise.description,
             exercise.name,
             exercise.category,

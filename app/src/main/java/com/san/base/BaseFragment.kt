@@ -35,11 +35,20 @@ abstract class BaseFragment : Fragment() {
     fun <T : ViewModel> getViewModel(modelClass: Class<T>) =
         getViewModelProvider(this).get(modelClass)
 
+    fun <T : ViewModel> getViewModel(modelClass: Class<T>, activity: FragmentActivity) =
+        getViewModelProvider(activity).get(modelClass)
+
     fun getViewModelProvider(fragment: Fragment) =
-        ViewModelProviders.of(fragment, (requireActivity().application as GankApplication).viewModelFactory)
+        ViewModelProviders.of(
+            fragment,
+            (requireActivity().application as GankApplication).viewModelFactory
+        )
 
     fun getViewModelProvider(activity: FragmentActivity) =
-        ViewModelProviders.of(activity, (requireActivity().application as GankApplication).viewModelFactory)
+        ViewModelProviders.of(
+            activity,
+            (requireActivity().application as GankApplication).viewModelFactory
+        )
 
     /**
      * Modified from https://github.com/uber/AutoDispose

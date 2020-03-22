@@ -5,6 +5,7 @@ import com.san.backend.di.module.ApiModule
 import com.san.di.AppScope
 import com.san.di.module.AppModule
 import com.san.di.module.FlipperModule
+import com.san.di.module.RepositoryModule
 import com.san.di.module.ViewModelModule
 import dagger.Component
 import javax.inject.Singleton
@@ -16,7 +17,8 @@ import javax.inject.Singleton
         AppModule::class,
         FlipperModule::class,
         ApiModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        RepositoryModule::class
     ]
 )
 interface AppComponent {

@@ -84,6 +84,10 @@ dependencies {
     implementation("com.google.dagger:dagger:2.24")
     kapt("com.google.dagger:dagger-compiler:2.24")
 
+    // ThreeTenABP
+    implementation("com.jakewharton.threetenabp:threetenabp:1.2.2")
+
+
     // Others
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("com.evernote:android-state:1.4.1")

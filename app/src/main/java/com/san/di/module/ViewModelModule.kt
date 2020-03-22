@@ -4,7 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.san.di.DaggerViewModelFactory
 import com.san.di.ViewModelKey
-import com.san.ui.exercise.WorkoutViewModel
+import com.san.ui.exercise.ExerciseViewModel
+import com.san.ui.workout.WorkoutViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -17,6 +18,11 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(ExerciseViewModel::class)
+    abstract fun bindExercisesViewModel(viewModel: ExerciseViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(WorkoutViewModel::class)
-    abstract fun bindExercisesViewModel(viewModel: WorkoutViewModel): ViewModel
+    abstract fun bindWorkoutViewModel(viewModel: WorkoutViewModel): ViewModel
 }
