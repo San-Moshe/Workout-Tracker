@@ -3,8 +3,6 @@ package com.san.ui.exercise
 import androidx.lifecycle.LiveData
 import com.san.base.BaseViewModel
 import com.san.room.model.ExerciseInfo
-import com.san.room.model.WorkoutExercise
-import com.san.ui.workout.IWorkoutRepository
 import javax.inject.Inject
 
 //TODO add abstraction layer for view model

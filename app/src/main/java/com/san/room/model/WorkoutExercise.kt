@@ -22,9 +22,10 @@ import androidx.room.PrimaryKey
 data class WorkoutExercise(
     @PrimaryKey(autoGenerate = true) val uid: Int = 0,
     @ColumnInfo(name = "time_started") val timeStarted: String,
-    @ColumnInfo(name = "weight") val weight: Float = 0f,
-    @ColumnInfo(name = "set_number") val setNum: Short = 0,
-    @ColumnInfo(name = "repetitions") val reps: Short = 0,
+    @ColumnInfo(name = "weight") var weight: Float = 0f,
+    @ColumnInfo(name = "set_number") var setNum: Short = 0,
+    @ColumnInfo(name = "repetitions") var reps: Short = 0,
     @ColumnInfo(name = "exercise_id") val exerciseId: Int,
+    @ColumnInfo(name = "exercise_name") val exerciseName: String,
     @ColumnInfo(name = "workout_id") val workoutId: Int
 )

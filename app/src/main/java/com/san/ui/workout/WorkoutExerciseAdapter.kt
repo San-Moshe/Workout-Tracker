@@ -1,5 +1,7 @@
 package com.san.ui.workout
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +13,13 @@ import com.google.android.material.textview.MaterialTextView
 import com.san.R
 import com.san.room.model.WorkoutExercise
 
-class WorkoutExerciseAdapter :
+
+interface ExerciseEditListener {
+    fun onExerciseWeightEdit(exerciseId: Int, weight: Float)
+    fun onExerciseRepsEdit(exerciseId: Int, reps: Short)
+}
+
+class WorkoutExerciseAdapter(private val exerciseEditListener: ExerciseEditListener) :
     ListAdapter<WorkoutExercise, WorkoutExerciseAdapter.WEViewHolder>(diffCallback) {
     inner class WEViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val setNumTextView = itemView.findViewById<MaterialTextView>(R.id.tv_set_number)
@@ -22,6 +30,40 @@ class WorkoutExerciseAdapter :
             setNumTextView.text = workoutExercise.setNum.toString()
             setWeightEditText.setText(workoutExercise.weight.toString())
             setRepsEditText.setText(workoutExercise.reps.toString())
+
+            setWeightEditText.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(editable: Editable?) {
+                    if (editable?.isNotEmpty() == true) {
+                        exerciseEditListener.onExerciseWeightEdit(
+                            workoutExercise.uid,
+                            editable.toString().toFloat()
+                        )
+                    }
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
+
+            setRepsEditText.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(editable: Editable?) {
+                    if (editable?.isNotEmpty() == true) {
+                        exerciseEditListener.onExerciseRepsEdit(
+                            workoutExercise.uid,
+                            editable.toString().toShort()
+                        )
+                    }
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
+            })
         }
     }
 

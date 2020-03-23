@@ -14,7 +14,10 @@ import com.san.ui.base.ClickableAdapter
 import com.san.ui.base.OnViewHolderClickListener
 
 //TODO notify edit when focus change
-class WorkoutAdapter(val clickListener: OnViewHolderClickListener<List<WorkoutExercise>>) :
+class WorkoutAdapter(
+    val clickListener: OnViewHolderClickListener<List<WorkoutExercise>>,
+    private val exerciseEditListener: ExerciseEditListener
+) :
     BaseAdapter<List<WorkoutExercise>, BaseViewHolder<List<WorkoutExercise>>>(
         diffCallback
     ) {
@@ -28,7 +31,8 @@ class WorkoutAdapter(val clickListener: OnViewHolderClickListener<List<WorkoutEx
             itemView.findViewById<MaterialTextView>(R.id.tv_exercise_title_name)
         private val exerciseRecyclerView =
             itemView.findViewById<RecyclerView>(R.id.rv_exercise_sets)
-        private val workoutExerciseAdapter: WorkoutExerciseAdapter = WorkoutExerciseAdapter()
+        private val workoutExerciseAdapter: WorkoutExerciseAdapter =
+            WorkoutExerciseAdapter(exerciseEditListener)
 
         init {
             //TODO consider adding item decoration
@@ -37,9 +41,8 @@ class WorkoutAdapter(val clickListener: OnViewHolderClickListener<List<WorkoutEx
             }
         }
 
-        //TODO convert the id to the exercise name somehow
         override fun bind(item: List<WorkoutExercise>) {
-            exerciseNameTextView.text = item.first().exerciseId.toString()
+            exerciseNameTextView.text = item.first().exerciseName
 
             workoutExerciseAdapter.submitList(item)
         }

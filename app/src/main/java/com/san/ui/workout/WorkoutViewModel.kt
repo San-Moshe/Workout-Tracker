@@ -15,14 +15,8 @@ import javax.inject.Inject
 interface IWorkoutViewModel {
     fun getWorkoutExercises(): LiveData<List<WorkoutExercise>>
     fun getCurrentWorkout(): LiveData<WorkoutWithExercises>
-    fun editExercise(
-        timeStarted: Float = 0f,
-        weight: Float = 0f,
-        setNum: Short = 0,
-        reps: Short = 0,
-        exerciseId: Short = 0,
-        workoutId: String
-    )
+    fun editExerciseWeight(uid: Int, weight: Float)
+    fun editExerciseReps(uid: Int, reps: Short)
 
     fun saveWorkout()
 }
@@ -44,15 +38,16 @@ class WorkoutViewModel @Inject constructor(private val workoutRepository: IWorko
 
     override fun getCurrentWorkout(): LiveData<WorkoutWithExercises> = selectedWorkout
 
-    override fun editExercise(
-        timeStarted: Float,
-        weight: Float,
-        setNum: Short,
-        reps: Short,
-        exerciseId: Short,
-        workoutId: String
-    ) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun editExerciseWeight(uid: Int, weight: Float) {
+        getCurrentWorkout().value?.exercises?.find {
+            it.uid == uid
+        }?.weight = weight
+    }
+
+    override fun editExerciseReps(uid: Int, reps: Short) {
+        getCurrentWorkout().value?.exercises?.find {
+            it.uid == uid
+        }?.reps = reps
     }
 
     override fun saveWorkout() {
@@ -70,6 +65,7 @@ class WorkoutViewModel @Inject constructor(private val workoutRepository: IWorko
                 WorkoutExercise(
                     timeStarted = LocalTime.now().toString(),
                     exerciseId = exercise.uid,
+                    exerciseName = exercise.name,
                     workoutId = workout.uid
                 )
             )

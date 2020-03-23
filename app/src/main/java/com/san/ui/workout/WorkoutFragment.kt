@@ -1,7 +1,6 @@
 package com.san.ui.workout
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,8 @@ import com.san.room.model.WorkoutExercise
 import com.san.ui.base.OnViewHolderClickListener
 import kotlinx.android.synthetic.main.workout_fragment.*
 
-class WorkoutFragment : BaseFragment(), OnViewHolderClickListener<List<WorkoutExercise>> {
+class WorkoutFragment : BaseFragment(), OnViewHolderClickListener<List<WorkoutExercise>>,
+    ExerciseEditListener {
     private val vm: IWorkoutViewModel by lazy {
         getViewModel(WorkoutViewModel::class.java, requireActivity())
     }
@@ -22,7 +22,7 @@ class WorkoutFragment : BaseFragment(), OnViewHolderClickListener<List<WorkoutEx
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        workoutAdapter = WorkoutAdapter(this)
+        workoutAdapter = WorkoutAdapter(this, this)
     }
 
     override fun onCreateView(
@@ -61,5 +61,13 @@ class WorkoutFragment : BaseFragment(), OnViewHolderClickListener<List<WorkoutEx
 
     override fun onItemSelected(item: List<WorkoutExercise>) {
 
+    }
+
+    override fun onExerciseWeightEdit(exerciseId: Int, weight: Float) {
+        vm.editExerciseWeight(exerciseId, weight)
+    }
+
+    override fun onExerciseRepsEdit(exerciseId: Int, reps: Short) {
+        vm.editExerciseReps(exerciseId, reps)
     }
 }
