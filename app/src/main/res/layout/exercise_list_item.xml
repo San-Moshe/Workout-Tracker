@@ -20,45 +20,39 @@
         android:id="@+id/tv_exercise_title_set_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/set"
         app:layout_constraintEnd_toStartOf="@id/tv_exercise_title_weight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_exercise_title_name"
-        tools:text="SET" />
+        app:layout_constraintTop_toBottomOf="@id/tv_exercise_title_name" />
 
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_exercise_title_weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/weight"
         app:layout_constraintEnd_toStartOf="@id/tv_exercise_title_reps"
         app:layout_constraintStart_toEndOf="@id/tv_exercise_title_set_number"
-        app:layout_constraintTop_toBottomOf="@id/tv_exercise_title_name"
-        tools:text="WEIGHT" />
+        app:layout_constraintTop_toBottomOf="@id/tv_exercise_title_name" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_exercise_title_reps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/reps"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tv_exercise_title_weight"
-        app:layout_constraintTop_toBottomOf="@id/tv_exercise_title_name"
-        tools:text="REPS" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_titles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintTop_toBottomOf="@id/tv_exercise_title_name" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_exercise_sets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline_titles"
+        app:layout_constraintTop_toBottomOf="@id/tv_exercise_title_reps"
         tools:listitem="@layout/set_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

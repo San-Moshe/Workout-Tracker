@@ -5,5 +5,8 @@
     <string name="sth_went_wrong">Something went wrong</string>
     <string name="fetch_suc">Fetched successfully</string>
     <string name="add_exercise">ADD EXERCISE</string>
+    <string name="set">SET</string>
+    <string name="reps">REPS</string>
+    <string name="weight">WEIGHT</string>
     <string name="cancel_workout">CANCEL SESSION</string>
 </resources>
